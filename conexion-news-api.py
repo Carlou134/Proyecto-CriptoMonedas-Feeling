@@ -19,7 +19,13 @@ def obtener_noticias(query="economy", lenguaje="es", maximo=10):
     noticias = response.json()["articles"]
     return pd.DataFrame(noticias)[["source", "title", "description", "publishedAt", "url"]]
 
-# Ejemplo de uso
-df_noticias = obtener_noticias("criptomonedas", "es", 15)
-print(df_noticias.head())
-df_noticias.to_csv("criptomonedas-news-api.csv")
+temas = ["Ethereum ETF", "Bitcoin regulación", "DeFi tendencia"]
+dfs = []
+
+for tema in temas:
+    df = obtener_noticias(query=tema, lenguaje="es", maximo=10)
+    dfs.append(df)
+
+# Unir todos en un solo DataFrame
+df_total = pd.concat(dfs, ignore_index=True)
+df_total.to_csv("noticias_combinadas.csv", index=False)

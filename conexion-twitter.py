@@ -21,7 +21,7 @@ def buscar_tweets(query, max_results=10):
     return response.json()
 
 # Ejemplo: buscar "dólar Perú"
-resultados = buscar_tweets("criptomonedas", max_results=20)
+resultados = buscar_tweets("(bitcoin OR ethereum OR altcoins OR solana) lang:es", max_results=50)
 
 # Mostrar los resultados en DataFrame
 df = pd.DataFrame(resultados["data"])

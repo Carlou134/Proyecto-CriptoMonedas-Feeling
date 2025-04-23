@@ -21,6 +21,10 @@ def obtener_noticias_crypto(tipo="news", monedas="btc,eth", idioma="es"):
     return pd.DataFrame(data)[["title", "published_at", "url", "votes"]]
 
 # Ejemplo de uso
-df_crypto = obtener_noticias_crypto()
-print(df_crypto.head())
-df_crypto.to_csv("criptomonedas-cripto-panic.csv")
+df_crypto = obtener_noticias_crypto(
+    tipo="news",
+    monedas="btc,eth,sol,ada,doge",
+    idioma="es"
+)
+df_crypto.to_csv("criptopanic_completo.csv", index=False)
+
